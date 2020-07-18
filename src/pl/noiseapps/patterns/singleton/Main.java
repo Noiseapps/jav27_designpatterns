@@ -8,8 +8,8 @@ public class Main {
         new Thread(runnable()).start();
         new Thread(runnable()).start();
 
-        Thread.sleep(1000);
-        System.out.println(LazySingleton.getInstance().toString());
+//        Thread.sleep(1000);
+//        System.out.println(EagerSingleton.getInstance().toString());
 //        LazySingleton s1 = LazySingleton.getInstance();
 //        LazySingleton s2 = LazySingleton.getInstance();
 //        LazySingleton s3 = LazySingleton.getInstance();
@@ -23,7 +23,7 @@ public class Main {
         return new Runnable() {
             @Override
             public void run() {
-                LazySingleton s1 = LazySingleton.getInstance();
+                DoubleCheckLocking s1 = DoubleCheckLocking.getInstance();
                 System.out.println(s1.toString());
             }
         };

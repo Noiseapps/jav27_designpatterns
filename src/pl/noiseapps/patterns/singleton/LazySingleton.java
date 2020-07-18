@@ -8,7 +8,7 @@ public class LazySingleton {
 
     private final int identifier;
 
-    public static LazySingleton getInstance() {
+    public synchronized static LazySingleton getInstance() {
         if(instance == null) {
             Random r = new Random();
             instance = new LazySingleton(r.nextInt());
