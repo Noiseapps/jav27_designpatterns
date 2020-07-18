@@ -5,10 +5,12 @@ public class Main {
 
     public static void main(String[] args) {
         PasswordService passwordService = new PasswordService();
-        passwordService.setHashingAlgo(new PlainTextAlgo());
+
+        int userId = 0;
+        passwordService.setHashingAlgo(HashingAlgoFactory.getAlgorithmForUser(userId));
         passwordService.save("test");
         passwordService.save("test");
-        passwordService.setHashingAlgo(new MD5HashingAlgo());
+        passwordService.setHashingAlgo(HashingAlgoFactory.getAlgorithmForUser(userId));
         passwordService.save("test");
         passwordService.save("test");
         passwordService.save("test");
