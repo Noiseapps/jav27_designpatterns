@@ -6,26 +6,16 @@ public class Main {
 
     public static void main(String[] args) {
 
-        int userId = new Random().nextInt(100);
+        AuthContext.getInstance().setUserId(new Random().nextInt(100));
         Calculator hc = new HeavyCalculator();
-
-        hc.generateHeavyString();
-        System.out.println();
-        hc.generateHeavyString();
-        System.out.println();
-        hc.generateHeavyString();
-        System.out.println();
-
-
         Calculator ccp = new CachingCalculatorProxy((HeavyCalculator) hc);
         Calculator tlp = new TimeLoggingProxy((CachingCalculatorProxy) ccp);
-        tlp.generateHeavyString(); // only if userId > 50
-        System.out.println();
-        tlp.generateHeavyString(); // only if userId > 50
-        System.out.println();
-        tlp.generateHeavyString(); // only if userId > 50
-        System.out.println();
-
-
+        Calculator ap = new AuthProxy((TimeLoggingProxy) tlp);
+        // wrap with auth proxy
+        for (int i = 0; i < 50; i++) {
+            AuthContext.getInstance().setUserId(new Random().nextInt(100));
+            ap.generateHeavyString();
+            System.out.println();
+        }
     }
 }

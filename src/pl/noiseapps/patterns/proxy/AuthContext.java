@@ -2,9 +2,9 @@ package pl.noiseapps.patterns.proxy;
 
 public class AuthContext {
 
-    private final AuthContext instance = new AuthContext();
+    private final static AuthContext instance = new AuthContext();
 
-    public AuthContext getInstance() {
+    public static AuthContext getInstance() {
         return instance;
     }
 
